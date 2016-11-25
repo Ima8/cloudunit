@@ -6,10 +6,19 @@ if [ "$2" == "cache" ]; then
 fi
 
 function base {
+    docker build --rm $CACHE_STRATEGY -t cloudunit/base-openjdk8 images/base-openjdk8
     docker build --rm $CACHE_STRATEGY -t cloudunit/base-jessie images/base-jessie
     docker build --rm $CACHE_STRATEGY -t cloudunit/base-12.04 images/base-12.04
     docker build --rm $CACHE_STRATEGY -t cloudunit/base-14.04 images/base-14.04
     docker build --rm $CACHE_STRATEGY -t cloudunit/base-16.04 images/base-16.04
+}
+
+function elastic {
+    docker build --rm $CACHE_STRATEGY -t cloudunit/elasticsearch-2.4 images/modules/elasticsearch-2.4
+}
+
+function neo4j {
+    docker build --rm $CACHE_STRATEGY -t cloudunit/neo4j-3.0 images/modules/neo4j-3.0
 }
 
 function apache {
@@ -57,10 +66,6 @@ function activemq {
 
 function rabbitmq {
     docker build --rm $CACHE_STRATEGY -t cloudunit/rabbitmq-3.6 images/modules/rabbitmq-3.6
-}
-
-function elastic {
-    docker build --rm $CACHE_STRATEGY -t cloudunit/elasticsearch-2.4 images/modules/elasticsearch-2.4
 }
 
 function redis {

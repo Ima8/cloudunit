@@ -143,15 +143,38 @@ The official image is : https://github.com/neo4j/docker-neo4j-publish
 
 ```
 cd ~/cloudunit/cu-services/images/modules
-mkdir neo4j
-cd neo4j
+mkdir neo4j && cd neo4j
 ``` 
 
 Go to `https://github.com/neo4j/docker-neo4j-publish/tree/master/3.0.7/community` and copy/paste the files.
 
 ```
 mkdir scripts
-curl 
 ```
+
+Copy/paste the two files
+
+env.sh
+```
+#!/usr/bin/env bash
+env
+```
+
+check-running.sh
+```
+#!/bin/bash
+nc -z localhost 7474
+RETURN=$?
+echo $RETURN
+exit $RETURN
+```
+
+Add an entry into **db-init.sql** and be careful about end of line
+
+```
+  (120, 'neo4j-3.0', 'cloudunit/neo4j-3.0', 'Neo4J 3.0', 'neo4j', 'module', '', 'DATABASE');
+```
+
+
 
 
